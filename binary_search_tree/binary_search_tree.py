@@ -31,14 +31,27 @@ class BinarySearchTree:
             if not current:
                 return False
             if current.value == target:
-                return
+                return True
             elif current.value > target:
-                
+                current = current.left
             else:
+                current = current.right
                 
 
   def get_max(self):
-    pass
+      current = self
+      while current.right is not None:
+          current = current.right
+      return current.value
+
 
   def for_each(self, cb):
-    pass
+      if self.right is None and self.left is None:
+          return cb(self.value)
+      else:
+          if self.right:
+              cb(self.value)
+              self.right.for_each(cb)
+          if self.left:
+              cb(self.value)
+              self.left.for_each(cb)
