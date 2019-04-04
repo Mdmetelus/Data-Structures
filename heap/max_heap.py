@@ -28,4 +28,13 @@ class Heap:
   def _sift_down(self, index):
       while index * 2 + 1 <= len(self.storage) - 1:
           if index * 2 + 2 > len(self.storage) - 1:
+              maxSize = index * 2 + 1
+          elif self.storage[index * 2 + 1] > self.storage[index * 2 + 2]:
+              maxSize = index * 2 + 1
+          else:
+              maxSize = index * 2 + 2
+          if self.storage[maxSize] > self.storage[index]:
+              self.storage[maxSize], self.storage[index] = self.storage[index], self.storage[maxSize]
+          index = maxSize
+
 
