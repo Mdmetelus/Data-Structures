@@ -4,9 +4,13 @@ class Heap:
 
   def insert(self, value):
       self.storage.append(value)
+      self._bubble_up(len(self.storage) - 1)
 
   def delete(self):
-    pass
+      removed_item = self.storage[0]
+      del self.storage[0]
+      self._sift_down(0)
+      return removed_item
 
   def get_max(self):
       return self.storage[0]
@@ -15,7 +19,13 @@ class Heap:
       return len(self.storage)
 
   def _bubble_up(self, index):
-    pass
+      while (index - 1) // 2 >= 0:
+          if self.storage[(index - 1) // 2] < self.storage[index]:
+              self.storage[index], self.storage[(
+                    index - 1) // 2] = self.storage[(index - 1) // 2], self.storage[index]
+          index = (index - 1) // 2
 
   def _sift_down(self, index):
-    pass
+      while index * 2 + 1 <= len(self.storage) - 1:
+          if index * 2 + 2 > len(self.storage) - 1:
+
